@@ -1,0 +1,160 @@
+---
+title: "R4DS"
+author: "Jeff Grayum"
+date: "1/1/2021"
+output: html_document
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+```{r}
+library(tidyverse)
+```
+
+```{r}
+mpg %>%
+  view()
+
+ggplot(data = mpg) +
+  geom_point(mapping = aes(x = displ, y = hwy, color = class, stroke = 2))
+
+
+
+ggplot(data = mpg) +
+  geom_point(mapping = aes(x = displ, y = hwy, shape = class))
+
+ggplot(data = mpg) +
+  geom_point(mapping = aes(x = displ, y = hwy), color = "blue")
+
+str(mpg)
+
+glimpse(mpg)
+
+?mpg
+
+ggplot(data = mpg) +
+  geom_point(mapping = aes(x = hwy, y = cty, color = displ < 5))
+
+ggplot(data = mpg) +
+  geom_point(mapping = aes(x = displ, y = hwy)) +
+  facet_wrap(~ class, nrow = 2)
+
+ggplot(data = mpg) +
+  geom_point(mapping = aes(x = displ, y = hwy)) +
+  facet_grid(drv ~ cyl)
+
+ggplot(data = mpg) +
+  geom_point(mapping = aes(x = cty, y = hwy)) +
+  facet_wrap(~ displ , nrow = 2)
+
+ggplot(data = mpg) +
+  geom_point(mapping = aes(x = displ, y = hwy)) +
+  facet_grid(. ~ cyl)
+
+ggplot(data = mpg) +
+  geom_smooth(mapping = aes(x = displ, y = hwy, linetype = drv)) 
+
+ggplot(data = mpg) +
+  geom_smooth(mapping = aes(x = displ, y = hwy, group = drv)) 
+
+ggplot(data = mpg) +
+  geom_smooth(mapping = aes(x = displ, y = hwy, linetype = drv)) +
+  geom_point(mapping = aes(x = displ, y = hwy, color = drv))
+
+mpg %>%
+  ggplot(aes(displ, hwy, linetype = drv)) +
+  geom_smooth() +
+  geom_point(aes(displ,hwy, color = drv))
+
+ggplot(data = mpg, mapping = aes(x = displ, y = hwy)) +
+  geom_point() +
+  geom_smooth()
+
+mpg %>%
+  ggplot(aes(displ, hwy)) +
+  geom_point() +
+  geom_smooth()
+
+mpg %>%
+  ggplot(aes(displ, hwy)) +
+  geom_point(mapping = aes(color = class)) +
+  geom_smooth()
+
+mpg %>%
+  ggplot(aes(displ, hwy)) +
+  geom_smooth(mapping = aes(linetype = drv)) +
+  geom_point()
+
+mpg %>%
+  ggplot(aes(displ, hwy)) +
+  geom_smooth(mapping = aes(linetype = drv)) +
+  geom_point(mapping = aes(color = class))
+
+
+ggplot(data = mpg, mapping = aes(x = displ, y = hwy)) +
+  geom_point(mapping = aes(color = class)) +
+  geom_smooth(data = filter(mpg, class == "subcompact"), se = FALSE)
+
+ggplot(data = mpg, mapping = aes(x = displ, y = hwy, color = drv)) +
+  geom_point() +
+  geom_smooth(se = FALSE)
+
+ggplot(data = mpg, mapping = aes(x = displ, y = hwy)) +
+  geom_point() +
+  geom_smooth(se = FALSE)
+
+mpg %>%
+  ggplot(aes(displ, hwy)) +
+  geom_point() +
+  geom_smooth(se = FALSE)
+
+ggplot(data = mpg, mapping = aes(x = displ, y = hwy)) +
+  geom_point() +
+  geom_smooth(se = FALSE, mapping = aes(group = drv))
+
+mpg %>%
+  ggplot(aes(displ, hwy)) +
+  geom_point() +
+  geom_smooth(se = FALSE, aes(group = drv))
+
+ggplot(data = mpg, mapping = aes(x = displ, y = hwy, color = drv)) +
+  geom_point() +
+  geom_smooth(se = FALSE)
+
+mpg %>%
+  ggplot(aes(displ, hwy, color = drv)) +
+  geom_point() +
+  geom_smooth(se = FALSE)
+
+ggplot(data = mpg, mapping = aes(x = displ, y = hwy)) +
+  geom_point(mapping = aes(color = drv)) +
+  geom_smooth(se = FALSE)
+
+mpg %>%
+  ggplot(aes(displ, hwy)) +
+  geom_point(aes(color = drv)) +
+  geom_smooth(se = FALSE)
+
+
+ggplot(data = mpg, mapping = aes(x = displ, y = hwy)) +
+  geom_point(mapping = aes(color = drv)) +
+  geom_smooth(se = FALSE, mapping = aes(linetype = drv))
+
+mpg %>%
+  ggplot(aes(displ, hwy)) +
+  geom_point(aes(color = drv)) +
+  geom_smooth(se = FALSE, aes(linetype = drv))
+
+ggplot(data = mpg, mapping = aes(x = displ, y = hwy, color = drv)) +
+  geom_point()
+
+mpg %>%
+  ggplot(aes(displ, hwy, color = drv)) +
+  geom_point()
+```
+
